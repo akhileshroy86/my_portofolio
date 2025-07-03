@@ -21,19 +21,26 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   const yRef = useRef(0);
   const frameRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    const animate = () => {
-      if (!slideRef.current) return;
+useEffect(() => {
+  const animate = () => {
+    if (!slideRef.current) return;
 
-      slideRef.current.style.setProperty("--x", `${xRef.current}px`);
-      slideRef.current.style.setProperty("--y", `${yRef.current}px`);
-
-      frameRef.current = requestAnimationFrame(animate);
-    };
+    slideRef.current.style.setProperty("--x", `${xRef.current}px`);
+    slideRef.current.style.setProperty("--y", `${yRef.current}px`);
 
     frameRef.current = requestAnimationFrame(animate);
-    return () => frameRef.current && cancelAnimationFrame(frameRef.current);
-  }, []);
+  };
+
+  frameRef.current = requestAnimationFrame(animate);
+
+  return () => {
+    if (frameRef.current !== null) {
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+    }
+  };
+}, []);
+
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const el = slideRef.current;
@@ -80,6 +87,8 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             <Image
               className="absolute inset-0 w-full h-[120%] object-cover transition-opacity duration-600 ease-in-out"
               style={{ opacity: current === index ? 1 : 0.5 }}
+              width={1200}
+              height={800}
               alt="slide image"
               src={src}
               loading="eager"

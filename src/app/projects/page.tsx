@@ -1,15 +1,26 @@
-'use client';
-import React, { useState } from 'react';
-import ProjectCard from '../components/ProjectCard'; // Make sure path is correct
-import { Carousel } from '../components/Coursal'; // Make sure path is correct
+// src/app/projects/page.tsx
+
+"use client";
+import React, { useState } from "react";
+import ProjectCard from "@/app/components/ProjectCard"; // ✅ Adjust path if needed
+import { Carousel } from "@/app/components/Coursal";
 
 const slides = [
   {
-    title: 'ANB Homepage',
-    button: 'Explore Homepage',
-    src: '/anb/anb-home.png', // You can use public folder images directly like this
+    title: "ANB Homepage",
+    src: "/anb/anb-home.png",
+    type: "image" as const,
   },
- 
+  {
+    title: "ANB Services",
+    src: "/anb/ourservices-1.png",
+    type: "image" as const,
+  },
+  {
+    title: "Demo",
+    src: "/anb/anb-demo.mp4",
+    type: "video" as const,
+  },
 ];
 
 export default function Projects() {
@@ -26,7 +37,7 @@ export default function Projects() {
       {!showCarousel ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <ProjectCard
-            description="I had made a website for ANB-IT Solutions. That solves the problem of managing IT services and solutions for businesses. The website provides information about their services, team, and contact details."
+            description="I developed a website for ANB-IT Solutions to help streamline their business IT service offerings."
             image="/anb/anb-home.png"
             liveLink="#"
             githubLink="#"
