@@ -33,14 +33,14 @@ export function HoverBorderGradient({
   const [direction, setDirection] = useState<Direction>("TOP");
   const hasMounted = useHasMounted();
 
-  const rotateDirection = (current: Direction): Direction => {
+  const rotateDirection = React.useCallback((current: Direction): Direction => {
     const directions: Direction[] = ["TOP", "LEFT", "BOTTOM", "RIGHT"];
     const index = directions.indexOf(current);
     const next = clockwise
       ? (index - 1 + directions.length) % directions.length
       : (index + 1) % directions.length;
     return directions[next];
-  };
+  }, [clockwise]);
 
   const movingMap: Record<Direction, string> = {
     TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -58,7 +58,7 @@ export function HoverBorderGradient({
       }, duration * 1000);
       return () => clearInterval(interval);
     }
-  }, [hovered, duration, clockwise, hasMounted]);
+  }, [hovered, duration, hasMounted, rotateDirection]);
 
   return (
     <Tag

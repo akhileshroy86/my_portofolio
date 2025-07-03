@@ -1,8 +1,5 @@
-import { Link } from "lucide-react";
 import { ContainerTextFlip } from "./ContainerTextFlip";
 import { HoverBorderGradient } from "./HoverBorderGradient";
-import { TextHoverEffect } from "./TextHoverEffect";
-import { TextRevealCard } from "./TextReveal";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
