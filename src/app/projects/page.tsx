@@ -18,7 +18,7 @@ const slides = [
   },
   {
     title: "Demo",
-    src: "/anb/anb-demo.mp4",
+    src: "/anb/anb-demo-showcase.mp4",
     type: "video" as const,
   },
 ];
@@ -35,7 +35,7 @@ export default function Projects() {
       <h2 className="text-4xl font-bold text-white mb-10">Projects</h2>
 
       {!showCarousel ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
           <ProjectCard
             description="I developed a website for ANB-IT Solutions to help streamline their business IT service offerings."
             image="/anb/anb-home.png"
@@ -49,7 +49,7 @@ export default function Projects() {
           <Carousel slides={slides} />
           <button
             onClick={() => setShowCarousel(false)}
-            className="mt-6 px-6 py-2 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
+            className="mt-12 px-6 py-2 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
           >
             ← Back to Projects
           </button>
