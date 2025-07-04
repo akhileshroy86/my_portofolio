@@ -20,7 +20,7 @@ export async function POST() {
   try {
     const data = await fs.readFile(filePath, 'utf-8');
     const json = JSON.parse(data);
-    // console.log('Current views before increment:', json.views);
+    console.log('Current views before increment:', json.views);
     json.views = (json.views || 0) + 1;
     await fs.writeFile(filePath, JSON.stringify(json, null, 2), 'utf-8');
     return NextResponse.json({ views: json.views });
