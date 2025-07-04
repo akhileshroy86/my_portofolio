@@ -11,6 +11,7 @@ export async function GET() {
     console.log('Current views:', json.views);
     return NextResponse.json({ views: json.views || 0 });
   } catch (error) {
+    console.error('Error reading views file:', error);
     return NextResponse.json({ views: 0 });
   }
 }
@@ -24,6 +25,7 @@ export async function POST() {
     await fs.writeFile(filePath, JSON.stringify(json, null, 2), 'utf-8');
     return NextResponse.json({ views: json.views });
   } catch (error) {
+    console.error('Error updating views file:', error);
     return NextResponse.json({ error: 'Failed to update views' }, { status: 500 });
   }
 }
